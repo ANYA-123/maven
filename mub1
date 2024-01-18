@@ -4,7 +4,7 @@ pipeline
     agent any
     stages
     {
-        stage('ContDownload')
+        stage('ContDownload_loans')
         {
             steps
             {
@@ -14,7 +14,7 @@ pipeline
                 }
             }
         }
-        stage('ContBuild')
+        stage('ContBuild_loans')
         {
             steps
             {
