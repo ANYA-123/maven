@@ -3,28 +3,28 @@ pipeline
     agent any
     stages
     {
-        stage('ContinousDownload')
+        stage('ContinousDownload_master')
         {
             steps
             {
                 git 'http://github.com/intelliqittrainings/maven.git'
             }
         }
-        stage('ContinousBuild')
+        stage('ContinousBuild_master')
         {
             steps
             {
                 sh 'mvn package'
             }
         }
-        stage('ContinousDeployment')
+        stage('ContinousDeployment_master')
         {
             steps
             {
                 deploy adapters: [tomcat9(credentialsId: '4ba9a36c-6b0c-4856-a3a2-79207e94dce8', path: '', url: 'http://172.31.0.204:8080')], contextPath: 'testapp', war: '**/*.war'
             }
         }
-        stage('ContinousTesting')
+        stage('ContinousTesting_master')
         {
             steps
             {
@@ -33,7 +33,7 @@ pipeline
                 sh 'java -jar /var/lib/jenkins/workspace/DeclarativePipeline/testing.jar'
             }
         }
-        stage('ContinousDelivery')
+        stage('ContinousDelivery_master')
         {
             steps
             {
